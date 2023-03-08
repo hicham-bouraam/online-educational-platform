@@ -87,6 +87,8 @@ if (isset($_SESSION['username'])) {
     header('Location: error.php');
     exit;
 } 
+        else
+        {
 unlink('studentcodeinhost.m');   
 $fp = fopen('studentcodeinhost.m', 'a');
 $myfile = fopen("isthecodeready.txt", "w");
@@ -95,7 +97,7 @@ fwrite($fp, $data);
 fwrite($myfile, $txt);
 fclose($myfile);
 fclose($fp);
-
+        }
 
 
 
