@@ -4,7 +4,7 @@ session_start(); // Start the session
 // Check if the user is already logged in
 if (isset($_SESSION['username'])) {
     // Redirect to another page or display an error message
-    header('Location: watch.php');
+    header('Location: error.php');
     exit;
 }
 
