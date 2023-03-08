@@ -9,7 +9,9 @@ if (isset($_SESSION['username'])) {
 }
 
 // Check if the user has submitted the login form
-elseif (isset($_POST['username']) && isset($_POST['password'])) {
+else
+{
+    if (isset($_POST['username']) && isset($_POST['password'])) {
     // Validate the username and password here
     if ($_POST['username'] == 'admin' && $_POST['password'] == 'password') {
         // Set the session variable to mark the user as logged in
@@ -22,6 +24,7 @@ elseif (isset($_POST['username']) && isset($_POST['password'])) {
         // Display an error message
         $error = 'Invalid username or password';
     }
+}
 }
 ?>
 
