@@ -9,23 +9,7 @@ if (isset($_SESSION['username'])) {
 }
 
 // Check if the user has submitted the login form
-else
-{
-    if (isset($_POST['username']) && isset($_POST['password'])) {
-    // Validate the username and password here
-    if ($_POST['username'] == 'admin' && $_POST['password'] == 'password') {
-        // Set the session variable to mark the user as logged in
-        $_SESSION['username'] = $_POST['username'];
 
-        // Redirect to the secure page or display a success message
-        header('Location: home.php');
-        exit;
-    } else {
-        // Display an error message
-        $error = 'Invalid username or password';
-    }
-}
-}
 ?>
 
 <!DOCTYPE html>
