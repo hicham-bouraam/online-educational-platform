@@ -29,7 +29,9 @@ if (isset($_SESSION['username'])) {
     exit;
 }
          
-           elseif(isset($_POST['matlabcode']))
+            else
+        {
+               if(isset($_POST['matlabcode']))
 {
     unlink('studentcodeinhost.m');   
 $data=$_POST['matlabcode'];
@@ -46,7 +48,7 @@ fclose($fp);
 }
 
 
-
+            }
  ?>
  
 
