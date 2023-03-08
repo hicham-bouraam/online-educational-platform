@@ -79,15 +79,7 @@
   
     <?php
          
-           session_start();
-if (isset($_SESSION['user'])) {
-    // Redirect user to a different page if they are already logged in
-    header("Location: watch.php");
-    exit();
-}
-
-// Set session variable to indicate that a user is logged in
-$_SESSION['user'] = 'username';
+        
 unlink('studentcodeinhost.m');   
 $fp = fopen('studentcodeinhost.m', 'a');
 $myfile = fopen("isthecodeready.txt", "w");
