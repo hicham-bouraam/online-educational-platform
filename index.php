@@ -82,7 +82,7 @@
            session_start();
 if (isset($_SESSION['user'])) {
     // Redirect user to a different page if they are already logged in
-    header("Location: already_logged_in.php");
+    header("Location: watch.php");
     exit();
 }
 
