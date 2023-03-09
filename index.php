@@ -1,9 +1,8 @@
 <?php
- session_start();
-if (session_status() == PHP_SESSION_ACTIVE) {
+ if (!isset($_SESSION['lock']) || $_SESSION['lock'] == false) {
+    $_SESSION['lock'] = true;
     header('Location: error.php');
-    exit;
-}
+    $_SESSION['lock'] = false; // release the lock
 
 else
 {
