@@ -46,9 +46,7 @@ $conn->close();
     <title>Login Page</title>
 </head>
 <body>
-    <?php if (isset($error)) { ?>
-        <p><?php echo $error; ?></p>
-    <?php } ?>
+   
 
     <form method="post">
         <label>Username:</label>
