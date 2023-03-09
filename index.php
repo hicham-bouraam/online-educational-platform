@@ -3,6 +3,7 @@
     $_SESSION['lock'] = true;
     header('Location: error.php');
     $_SESSION['lock'] = false; // release the lock
+  exit;
 
 else
 {
