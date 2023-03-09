@@ -19,7 +19,7 @@ $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
   // There is already a user on the webpage, redirect to a different page
-  header("Location: other_page.php");
+  header("Location: watch.php");
   exit();
 } else {
   // There is no user on the webpage, set the boolean variable to true and insert it into the table
