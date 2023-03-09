@@ -1,21 +1,9 @@
-
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Login Page</title>
-</head>
-<body>
-   
 <?php
-
-// Connect to the database
-$db_host = "online-educational-platform-server";
-$db_user = "jyhgeucacf";
-$db_pass = "A5UB284AV146VV63$";
-$db_name = "online-educational-platform-database";
-
-
+// Database connection parameters
+$servername =  "online-educational-platform-server";
+$username = "jyhgeucacf";
+$password = "A5UB284AV146VV63$";
+$dbname = "online-educational-platform-database";;
 
 // Create a connection to the database
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -31,7 +19,7 @@ $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
   // There is already a user on the webpage, redirect to a different page
-  header("Location: error.php");
+  header("Location: other_page.php");
   exit();
 } else {
   // There is no user on the webpage, set the boolean variable to true and insert it into the table
@@ -50,7 +38,15 @@ if ($result->num_rows > 0) {
 // Close the database connection
 $conn->close();
 
+// Start your HTML content below this point
 ?>
-   
-</body>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Webpage</title>
+  </head>
+  <body>
+    <h1>Welcome to my webpage</h1>
+    <p>This is some content on my webpage.</p>
+  </body>
 </html>
