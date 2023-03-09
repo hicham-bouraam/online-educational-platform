@@ -1,3 +1,12 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Page</title>
+</head>
+<body>
+   
 <?php
 // Connect to the database
 $db_host = "online-educational-platform-server";
@@ -39,15 +48,6 @@ if ($result->num_rows > 0) {
 $conn->close();
 
 ?>
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Login Page</title>
-</head>
-<body>
-   
-
     <form method="post">
         <label>Username:</label>
         <input type="text" name="username"><br>
