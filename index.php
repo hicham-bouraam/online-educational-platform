@@ -1,5 +1,5 @@
 <?php
-
+ session_start();
 if (session_status() == PHP_SESSION_ACTIVE) {
     header('Location: error.php');
     exit;
@@ -7,7 +7,7 @@ if (session_status() == PHP_SESSION_ACTIVE) {
 
 else
 {
-    session_start();
+   
 
 // Check if the user has submitted the login form
 if (isset($_POST['username']) && isset($_POST['password'])) {
