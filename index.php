@@ -1,13 +1,24 @@
 <?php
- if (!isset($_SESSION['lock']) || $_SESSION['lock'] == false) {
-    $_SESSION['lock'] = true;
-    header('Location: error.php');
-    $_SESSION['lock'] = false; // release the lock
-  exit;
+ $lock_file = "lock.txt";
 
+// Check if lock file exists
+if (file_exists($lock_file)) {
+    echo "Sorry, another user is currently accessing this page. Please try again later.";
+    exit;
+}
 else
 {
-   
+// Create lock file
+$handle = fopen($lock_file, "w");
+fwrite($handle, "locked");
+fclose($handle);
+
+// Display webpage content here
+
+// Remove lock file
+unlink($lock_file);
+
+}
 
 // Check if the user has submitted the login form
 if (isset($_POST['username']) && isset($_POST['password'])) {
