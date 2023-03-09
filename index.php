@@ -26,7 +26,7 @@ mysqli_query($conn, $lock_query);
 
 if (mysqli_affected_rows($conn) == 0) {
     // Another user is currently accessing the page, so display an error message and exit
-    echo "Sorry, another user is currently accessing this page. Please try again later.";
+     header('Location: error.php');
     exit;
 }
 
