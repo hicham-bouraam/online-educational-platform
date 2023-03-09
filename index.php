@@ -8,12 +8,14 @@
 <body>
    
 <?php
-    declare(strict_types=1);
+
 // Connect to the database
 $db_host = "online-educational-platform-server";
 $db_user = "jyhgeucacf";
 $db_pass = "A5UB284AV146VV63$";
 $db_name = "online-educational-platform-database";
+
+
 
 // Create a connection to the database
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -29,7 +31,8 @@ $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
   // There is already a user on the webpage, redirect to a different page
-  header("Location: home.php");
+  header("Location: error.php");
+  exit();
 } else {
   // There is no user on the webpage, set the boolean variable to true and insert it into the table
   $is_on_webpage = true;
@@ -38,8 +41,7 @@ if ($result->num_rows > 0) {
   VALUES ($is_on_webpage)";
 
   if ($conn->query($sql) === TRUE) {
-    // Redirect to a different page
-    header("Location: watch.php");
+    // User is the first one on the webpage, allow access
   } else {
     echo "Error inserting boolean value: " . $conn->error;
   }
