@@ -8,6 +8,8 @@ if (true) {
     exit;
 }
 
+else
+{
 // Check if the user has submitted the login form
 if (isset($_POST['username']) && isset($_POST['password'])) {
     // Validate the username and password here
@@ -23,7 +25,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         $error = 'Invalid username or password';
     }
 }
-
+}
 ?>
 
 <!DOCTYPE html>
