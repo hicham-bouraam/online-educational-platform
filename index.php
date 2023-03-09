@@ -3,7 +3,7 @@
 
 // Check if lock file exists
 if (file_exists($lock_file)) {
-    header('Location: error.php');
+    echo "Sorry, another user is currently accessing this page. Please try again later.";
     exit;
 }
 else
