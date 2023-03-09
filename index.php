@@ -3,7 +3,7 @@
 
 // Check if lock file exists
 if (file_exists($lock_file)) {
-    echo "Sorry, another user is currently accessing this page. Please try again later.";
+    header('Location: error.php');
     exit;
 }
 else
@@ -13,9 +13,7 @@ $handle = fopen($lock_file, "w");
 fwrite($handle, "locked");
 fclose($handle);
 
-// Display webpage content here
-
-// Remove lock file
+header('Location: home.php');
 unlink($lock_file);
 
 }
