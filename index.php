@@ -5,36 +5,44 @@ $db_user = "jyhgeucacf";
 $db_pass = "A5UB284AV146VV63$";
 $db_name = "online-educational-platform-database";
 
-$conn = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
 
-// Check if the lock table exists
-$check_table_query = "SELECT 1 FROM information_schema.tables WHERE table_name = 'page_lock' LIMIT 1";
-$check_table_result = mysqli_query($conn, $check_table_query);
 
-if (mysqli_num_rows($check_table_result) == 0) {
-    // Create the lock table if it doesn't exist
-    $create_table_query = "CREATE TABLE page_lock (id INT(1) PRIMARY KEY, locked BOOL)";
-    mysqli_query($conn, $create_table_query);
-    // Insert a row into the lock table
-    $insert_query = "INSERT INTO page_lock (id, locked) VALUES (1, 0)";
-    mysqli_query($conn, $insert_query);
+// Create a connection to the database
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check the connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
 }
 
-// Lock the page
-$lock_query = "UPDATE page_lock SET locked = 1 WHERE id = 1 AND locked = 0";
-mysqli_query($conn, $lock_query);
+// Create a table with a boolean column
+$sql = "CREATE TABLE user_status (
+  id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  is_on_webpage TINYINT(1) NOT NULL
+)";
 
-if (mysqli_affected_rows($conn) == 0) {
-    // Another user is currently accessing the page, so display an error message and exit
-     header('Location: error.php');
-    exit;
+if ($conn->query($sql) === TRUE) {
+  echo "Table created successfully";
+} else {
+  echo "Error creating table: " . $conn->error;
 }
 
-// Display webpage content here
+// Set the boolean variable to true to indicate that the user is on the webpage
+$is_on_webpage = true;
 
-// Unlock the page
-$unlock_query = "UPDATE page_lock SET locked = 0 WHERE id = 1";
-mysqli_query($conn, $unlock_query);
+// Insert the boolean variable into the table
+$sql = "INSERT INTO user_status (is_on_webpage)
+VALUES ($is_on_webpage)";
+
+if ($conn->query($sql) === TRUE) {
+  echo "Boolean value inserted successfully";
+} else {
+  echo "Error inserting boolean value: " . $conn->error;
+}
+
+// Close the database connection
+$conn->close();
+
 
 // Check if the user has submitted the login form
 if (isset($_POST['username']) && isset($_POST['password'])) {
