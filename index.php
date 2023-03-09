@@ -1,22 +1,40 @@
 <?php
- $lock_file = "lock.txt";
+// Connect to the database
+$db_host = "online-educational-platform-server";
+$db_user = "jyhgeucacf";
+$db_pass = "A5UB284AV146VV63$";
+$db_name = "online-educational-platform-database";
 
-// Check if lock file exists
-if (file_exists($lock_file)) {
+$conn = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
+
+// Check if the lock table exists
+$check_table_query = "SELECT 1 FROM information_schema.tables WHERE table_name = 'page_lock' LIMIT 1";
+$check_table_result = mysqli_query($conn, $check_table_query);
+
+if (mysqli_num_rows($check_table_result) == 0) {
+    // Create the lock table if it doesn't exist
+    $create_table_query = "CREATE TABLE page_lock (id INT(1) PRIMARY KEY, locked BOOL)";
+    mysqli_query($conn, $create_table_query);
+    // Insert a row into the lock table
+    $insert_query = "INSERT INTO page_lock (id, locked) VALUES (1, 0)";
+    mysqli_query($conn, $insert_query);
+}
+
+// Lock the page
+$lock_query = "UPDATE page_lock SET locked = 1 WHERE id = 1 AND locked = 0";
+mysqli_query($conn, $lock_query);
+
+if (mysqli_affected_rows($conn) == 0) {
+    // Another user is currently accessing the page, so display an error message and exit
     echo "Sorry, another user is currently accessing this page. Please try again later.";
     exit;
 }
-else
-{
-// Create lock file
-$handle = fopen($lock_file, "w");
-fwrite($handle, "locked");
-fclose($handle);
 
-header('Location: home.php');
-unlink($lock_file);
+// Display webpage content here
 
-}
+// Unlock the page
+$unlock_query = "UPDATE page_lock SET locked = 0 WHERE id = 1";
+mysqli_query($conn, $unlock_query);
 
 // Check if the user has submitted the login form
 if (isset($_POST['username']) && isset($_POST['password'])) {
