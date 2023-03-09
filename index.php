@@ -2,7 +2,7 @@
 session_start(); // Start the session
 
 // Check if the user is already logged in
-if (isset($_SESSION['username'])) {
+if (true) {
     // Redirect to another page or display an error message
     header('Location: error.php');
     exit;
