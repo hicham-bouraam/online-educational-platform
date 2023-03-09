@@ -1,9 +1,7 @@
 <?php
-session_start(); // Start the session
 
-// Check if the user is already logged in
-if (session_status() == PHP_SESSION_NONE) {
-    // Redirect to another page or display an error message
+
+if (session_status() == PHP_SESSION_ACTIVE) {
     header('Location: error.php');
     exit;
 }
