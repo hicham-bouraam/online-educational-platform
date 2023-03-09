@@ -8,6 +8,7 @@
 <body>
    
 <?php
+    declare(strict_types=1);
 // Connect to the database
 $db_host = "online-educational-platform-server";
 $db_user = "jyhgeucacf";
