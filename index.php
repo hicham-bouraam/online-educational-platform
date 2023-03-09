@@ -19,7 +19,7 @@ $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
   // There is already a user on the webpage, redirect to a different page
-  header("Location: page1.php");
+  header("Location: home.php");
 } else {
   // There is no user on the webpage, set the boolean variable to true and insert it into the table
   $is_on_webpage = true;
@@ -29,7 +29,7 @@ if ($result->num_rows > 0) {
 
   if ($conn->query($sql) === TRUE) {
     // Redirect to a different page
-    header("Location: page2.php");
+    header("Location: watch.php");
   } else {
     echo "Error inserting boolean value: " . $conn->error;
   }
