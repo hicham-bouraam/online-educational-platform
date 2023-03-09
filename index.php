@@ -1,6 +1,6 @@
 <?php
 // Database connection parameters
-$servername =  "online-educational-platform-server";
+$servername =  "online-educational-platform-server.mysql.database.azure.com";
 $username = "jyhgeucacf";
 $password = "A5UB284AV146VV63$";
 $dbname = "online-educational-platform-database";;
